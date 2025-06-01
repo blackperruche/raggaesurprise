@@ -286,6 +286,7 @@ nav a:hover {
   50% { opacity: 0.2; }
 }
 
+/* ----------- VERSION MOBILE ------------ */
 @media (max-width: 768px) {
   .background-overlay {
     padding-top: 80px;
