@@ -13,6 +13,7 @@ nav {
   background-color: rgba(0, 0, 0, 0.85);
   padding: 10px 0;
   z-index: 1000;
+  overflow-x: hidden;
 }
 
 nav ul {
@@ -30,13 +31,14 @@ nav li {
 nav a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 20px;
   transition: color 0.3s;
+  white-space: nowrap;
 }
 
 nav a:hover {
-  color: #FFD700;
+  color: gold;
 }
 
 .background-overlay {
@@ -59,12 +61,14 @@ nav a:hover {
   display: none;
   text-align: center;
   margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .highlight {
-  color: #FFD700;
-  font-size: 1.6em;
-  margin-bottom: 10px;
+  color: gold;
+  font-weight: 600;
+  font-size: 1.5em;
 }
 
 .highlight.small {
@@ -72,51 +76,10 @@ nav a:hover {
 }
 
 .origine-phrase {
+  text-align: center;
   line-height: 1.8em;
   margin: 40px auto 30px auto;
   max-width: 800px;
-}
-
-.logo-container {
-  text-align: center;
-  position: relative;
-  margin-bottom: 40px;
-}
-
-.logo {
-  width: 240px;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.3s;
-  border-radius: 20px;
-  z-index: 5;
-  position: relative;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
-.glow {
-  filter: drop-shadow(0 0 15px #FFD700);
-}
-
-#overlay-play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 64px;
-  color: #FFD700;
-  cursor: pointer;
-  transition: opacity 0.3s;
-  z-index: 10;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
 }
 
 .reseaux-icons {
@@ -167,14 +130,14 @@ nav a:hover {
   margin-top: 10px;
 }
 
+.label {
+  color: gold;
+  font-weight: bold;
+}
+
 #contact p {
   margin: 10px 0;
   font-size: 1.1em;
-}
-
-.label {
-  color: #FFD700;
-  font-weight: bold;
 }
 
 #contact a {
@@ -203,7 +166,7 @@ nav a:hover {
 
 .contact-form button {
   padding: 10px 20px;
-  background-color: #FFD700;
+  background-color: gold;
   color: black;
   border: none;
   border-radius: 8px;
@@ -216,7 +179,48 @@ nav a:hover {
   background-color: #e6c200;
 }
 
-/* ----------- VERSION MOBILE ------------ */
+.logo-container {
+  text-align: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.logo {
+  width: 240px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 5;
+  border-radius: 20px;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.glow {
+  filter: drop-shadow(0 0 15px gold);
+}
+
+#overlay-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  color: gold;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  z-index: 10;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
 @media (max-width: 768px) {
   .background-overlay {
     padding-top: 80px;
