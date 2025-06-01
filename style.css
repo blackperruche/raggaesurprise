@@ -3,7 +3,7 @@
 body {
   margin: 0;
   font-family: 'Reggae One', cursive;
-  background: url('Décor Raggae Surprise.png') no-repeat center center fixed;
+  background: url('decor-reggae-surprise.png') no-repeat center center fixed;
   background-size: cover;
   color: white;
 }
@@ -185,39 +185,15 @@ nav a:hover {
 .logo {
   width: 240px;
   height: auto;
-  cursor: pointer;
-  transition: transform 0.3s;
-  position: relative;
-  z-index: 5;
+  cursor: default;
   border-radius: 20px;
-}
-
-.logo:hover {
-  transform: scale(1.05);
 }
 
 .glow {
   filter: drop-shadow(0 0 15px gold);
 }
 
-#overlay-play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 64px;
-  color: gold;
-  cursor: pointer;
-  transition: opacity 0.3s;
-  z-index: 10;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
-}
-
+/* Version mobile */
 @media (max-width: 768px) {
   .content-wrapper {
     margin: 60px 10px;
@@ -226,17 +202,24 @@ nav a:hover {
 
   nav ul {
     flex-direction: row;
+    flex-wrap: nowrap;
     overflow-x: auto;
     justify-content: flex-start;
     padding: 0 10px;
+    scrollbar-width: none;
   }
 
-  .logo {
-    width: 160px;
+  nav ul::-webkit-scrollbar {
+    display: none;
   }
 
-  #overlay-play-button {
-    font-size: 48px;
+  nav li {
+    flex: 0 0 auto;
+    margin: 0 15px;
+  }
+
+  .highlight {
+    font-size: 1.3em;
   }
 
   .reseaux-icons {
@@ -248,7 +231,13 @@ nav a:hover {
     height: 45px;
   }
 
-  .highlight {
-    font-size: 1.3em;
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .logo {
+    width: 160px;
   }
 }
