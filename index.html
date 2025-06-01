@@ -21,52 +21,50 @@
 
     <div class="content-wrapper">
       <div class="logo-container">
-        <img src="logo-raggae-surprise.png" alt="Logo Reggae Surprise" class="logo glow" id="logo" ondblclick="togglePlayPause(event)" onclick="handleClick(event)">
+        <img src="Logo Raggae Suprise.png" alt="Logo Reggae Surprise" class="logo glow" id="logo" ondblclick="togglePlayPause(event)" onclick="handleClick(event)">
         <div id="overlay-play-button" onclick="startPlayback()">▶</div>
       </div>
 
       <div id="accueil" class="section">
-        <h1 class="highlight"><em>« Vos plus grands hits prennent un virage reggae… surprise ! 🥁🎸✌🏻 »</em></h1>
+        <h1 class="highlight"><em>“Vos plus grands hits prennent un virage reggae… surprise ! 🥁🎸✌🏻”</em></h1>
       </div>
 
       <div id="origines" class="section">
         <h1 class="highlight small origine-phrase">
           <em>
-            “Maître Perruche sur un arbre avec 2 mecs perchés,<br>
+            “Maître Reggae sur un palmier avec 3 mecs perchés,<br>
             chantait dans son bec un air à la tangente<br>
-            de la musique noire américaine et de la pop culture.”
+            de Bob Marley et de la pop culture.”
           </em>
         </h1>
-        <div class="boutons-bio">
-          <button onclick="toggleBio('jack')">🎤 Voir Jack</button>
-          <button onclick="toggleBio('james')">🎸 Voir James</button>
-        </div>
-
-        <div class="origines-row">
-          <div class="origine-profil" id="profil-jack">
-            <img src="jack.jpg" alt="Jack">
-            <p class="bio-text" id="bio-jack"></p>
-          </div>
-          <div class="origine-profil" id="profil-james">
-            <img src="james.jpg" alt="James">
-            <p class="bio-text" id="bio-james"></p>
-          </div>
-        </div>
+        <!-- À compléter avec vos membres si besoin -->
       </div>
 
       <div id="reseaux" class="section">
         <h2 class="highlight"><em>Viens nous écouter sur ton réseau préféré</em><span class="icon">🎶</span></h2>
         <div class="reseaux-icons">
+          <a href="https://www.instagram.com/reggaesurpriseoff/" target="_blank" class="reseau-icon">
+            <img src="instagram.png" alt="Instagram">
+          </a>
+          <a href="https://www.youtube.com/@ReggaeSurprise" target="_blank" class="reseau-icon">
+            <img src="youtube.png" alt="YouTube">
+          </a>
           <a href="https://www.facebook.com/profile.php?id=61567461952336" target="_blank" class="reseau-icon">
             <img src="facebook.png" alt="Facebook">
+          </a>
+          <a href="https://www.tiktok.com/@reggaesurprise" target="_blank" class="reseau-icon">
+            <img src="tiktok.png" alt="TikTok">
           </a>
         </div>
       </div>
 
       <div id="concerts" class="section">
-        <h2 class="highlight"><em>Viens nous voir jouer bientôt…</em></h2>
+        <h2 class="highlight"><em>Viens nous voir jouer le...</em></h2>
         <p class="concert-infos">
-          (à compléter)
+          <span>28 Juin</span> · 
+          <span>19h</span> · 
+          <span>à La Friche en Herbe</span> · 
+          <span>15 Rue Emile Zola, 39400 Hauts-de-Bienne</span>
         </p>
       </div>
 
@@ -124,46 +122,6 @@
       window.onload = () => {
         showSection('accueil');
       };
-
-      const bios = {
-        jack: {
-          element: document.getElementById("bio-jack"),
-          container: document.getElementById("profil-jack"),
-          text: `Bio de Jack à adapter pour Reggae Surprise.`,
-          click: 0
-        },
-        james: {
-          element: document.getElementById("bio-james"),
-          container: document.getElementById("profil-james"),
-          text: `Bio de James à adapter pour Reggae Surprise.`,
-          click: 0
-        }
-      };
-
-      function typeText(name, index = 0) {
-        const bio = bios[name];
-        const words = bio.text.split(" ");
-        if (index < words.length) {
-          bio.element.innerHTML = words.slice(0, index + 1).join(" ") + " ";
-          setTimeout(() => typeText(name, index + 1), 35);
-        }
-      }
-
-      function toggleBio(name) {
-        const bio = bios[name];
-        bio.click++;
-        if (bio.click % 3 === 1) {
-          bio.container.style.display = "block";
-          bio.element.innerText = "";
-          typeText(name);
-        } else if (bio.click % 3 === 2) {
-          bio.container.style.display = "none";
-          bio.element.innerText = "";
-        } else {
-          bio.container.style.display = "block";
-          bio.element.innerText = bio.text;
-        }
-      }
     </script>
   </div>
 </body>
