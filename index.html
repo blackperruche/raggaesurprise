@@ -1,243 +1,123 @@
-@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Reggae Surprise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="background-overlay">
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showSection('accueil')">Accueil</a></li>
+        <li><a href="#" onclick="showSection('origines')">Origines</a></li>
+        <li><a href="#" onclick="showSection('reseaux')">Réseaux</a></li>
+        <li><a href="#" onclick="showSection('concerts')">Concerts</a></li>
+        <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+      </ul>
+    </nav>
 
-body {
-  margin: 0;
-  font-family: 'Reggae One', cursive;
-  background: url('decor-reggae-surprise.png') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-}
+    <div class="content-wrapper">
+      <div class="logo-container">
+        <img src="logo-reggae-surprise.png" alt="Logo Reggae Surprise" class="logo glow" id="logo" ondblclick="togglePlayPause(event)" onclick="handleClick(event)">
+        <div id="overlay-play-button" onclick="startPlayback()">▶</div>
+      </div>
 
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  padding: 10px 0;
-  z-index: 1000;
-  overflow-x: hidden;
-}
+      <div id="accueil" class="section">
+        <h1 class="highlight"><em>“Vos plus grands hits prennent un virage reggae… surprise ! 🥁🎸✌🏻”</em></h1>
+      </div>
 
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+      <div id="origines" class="section">
+        <h2 class="highlight small origine-phrase">
+          <em>
+            “Deux musiciens passionnés de reprises et de reggae<br>
+            se sont un jour dit : et si on mélangeait tout ça ?”
+          </em>
+        </h2>
+      </div>
 
-nav li {
-  margin: 0 20px;
-}
+      <div id="reseaux" class="section">
+        <h2 class="highlight"><em>Viens nous écouter sur ton réseau préféré</em><span class="icon">🎶</span></h2>
+        <div class="reseaux-icons">
+          <a href="https://www.instagram.com/reggaesurpriseoff/" target="_blank" class="reseau-icon">
+            <img src="instagram.png" alt="Instagram">
+          </a>
+          <a href="https://www.youtube.com/@ReggaeSurprise" target="_blank" class="reseau-icon">
+            <img src="youtube.png" alt="YouTube">
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61567461952336" target="_blank" class="reseau-icon">
+            <img src="facebook.png" alt="Facebook">
+          </a>
+        </div>
+      </div>
 
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 20px;
-  transition: color 0.3s;
-  white-space: nowrap;
-}
+      <div id="concerts" class="section">
+        <h2 class="highlight"><em>Viens nous voir jouer le...</em></h2>
+        <p class="concert-infos">
+          <span>28 Juin</span> · 
+          <span>19h</span> · 
+          <span>à La Friche en Herbe</span> · 
+          <span>15 Rue Emile Zola, 39400 Hauts-de-Bienne</span>
+        </p>
+      </div>
 
-nav a:hover {
-  color: gold;
-}
+      <div id="contact" class="section">
+        <p><span class="label">Mail :</span> <a href="mailto:reggaesurprise@gmail.com">reggaesurprise@gmail.com</a></p>
+        <p><span class="label">Téléphone :</span> <a href="tel:0614855061">06 14 85 50 61</a></p>
 
-.background-overlay {
-  padding-top: 60px;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
+        <form action="https://formspree.io/f/myzwdbdo" method="POST" class="contact-form">
+          <input type="text" name="nom" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Votre e-mail" required>
+          <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+          <input type="text" name="_gotcha" style="display:none">
+          <input type="hidden" name="_next" value="https://blackperruche.github.io/merci.html">
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+    </div>
 
-.content-wrapper {
-  max-width: 1000px;
-  margin: 80px auto 0 auto;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 20px;
-  position: relative;
-  z-index: 1;
-}
+    <audio id="audio-player" src="" preload="auto"></audio>
+    <script>
+      const playlist = [...Array(24)].map((_, i) => ({ file: `audio${i + 1}.mp3` }));
+      let currentTrack = 0;
+      const audio = document.getElementById('audio-player');
+      const playButton = document.getElementById('overlay-play-button');
 
-.section {
-  display: none;
-  text-align: center;
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 1;
-}
+      function playCurrentTrack() {
+        audio.src = playlist[currentTrack].file;
+        audio.play().then(() => playButton.style.display = "none").catch(() => playButton.style.display = "block");
+        audio.onended = () => {
+          currentTrack = (currentTrack + 1) % playlist.length;
+          playCurrentTrack();
+        };
+      }
 
-.highlight {
-  color: gold;
-  font-weight: 600;
-  font-size: 1.5em;
-}
+      function startPlayback() {
+        playCurrentTrack();
+      }
 
-.highlight.small {
-  font-size: 1.2em;
-}
+      function handleClick(event) {
+        event.stopPropagation();
+        currentTrack = (currentTrack + 1) % playlist.length;
+        playCurrentTrack();
+      }
 
-.origine-phrase {
-  text-align: center;
-  line-height: 1.8em;
-  margin: 40px auto 30px auto;
-  max-width: 800px;
-}
+      function togglePlayPause(event) {
+        event.stopPropagation();
+        audio.paused ? audio.play() : audio.pause();
+      }
 
-.reseaux-icons {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
+      function showSection(id) {
+        document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+      }
 
-.reseau-icon {
-  opacity: 0;
-  transform: translateX(-30px);
-  animation: apparition 0.6s ease-out forwards;
-}
-
-.reseau-icon:nth-child(1) { animation-delay: 0.2s; }
-.reseau-icon:nth-child(2) { animation-delay: 0.4s; }
-.reseau-icon:nth-child(3) { animation-delay: 0.6s; }
-
-@keyframes apparition {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.reseau-icon img {
-  width: 55px;
-  height: 55px;
-  transition: transform 0.3s, filter 0.3s;
-  filter: brightness(1.1);
-}
-
-.reseau-icon img:hover {
-  transform: scale(1.2);
-  filter: brightness(1.5);
-}
-
-#reseaux .icon {
-  color: #FFD700;
-  font-size: 1.6em;
-}
-
-.concert-infos {
-  color: white;
-  font-size: 1.1em;
-  margin-top: 10px;
-}
-
-.label {
-  color: gold;
-  font-weight: bold;
-}
-
-#contact a {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 90%;
-  max-width: 500px;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1em;
-}
-
-.contact-form button {
-  padding: 10px 20px;
-  background-color: gold;
-  color: black;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.contact-form button:hover {
-  background-color: #e6c200;
-}
-
-.logo-container {
-  text-align: center;
-  position: relative;
-  margin-bottom: 40px;
-}
-
-.logo {
-  width: 240px;
-  height: auto;
-  cursor: default;
-  border-radius: 20px;
-}
-
-.glow {
-  filter: drop-shadow(0 0 15px gold);
-}
-
-/* Version mobile */
-@media (max-width: 768px) {
-  .content-wrapper {
-    margin: 60px 10px;
-    padding: 15px;
-  }
-
-  nav ul {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding: 0 10px;
-    scrollbar-width: none;
-  }
-
-  nav ul::-webkit-scrollbar {
-    display: none;
-  }
-
-  nav li {
-    flex: 0 0 auto;
-    margin: 0 15px;
-  }
-
-  .highlight {
-    font-size: 1.3em;
-  }
-
-  .reseaux-icons {
-    gap: 15px;
-  }
-
-  .reseau-icon img {
-    width: 45px;
-    height: 45px;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .logo {
-    width: 160px;
-  }
-}
+      window.onload = () => {
+        showSection('accueil');
+      };
+    </script>
+  </div>
+</body>
+</html>
