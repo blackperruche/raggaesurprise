@@ -82,6 +82,65 @@ nav a:hover {
   max-width: 800px;
 }
 
+.boutons-bio {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.boutons-bio button {
+  padding: 10px 20px;
+  background-color: gold;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.boutons-bio button:hover {
+  background-color: #e6c200;
+  transform: scale(1.05);
+}
+
+.origines-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.origine-profil {
+  text-align: center;
+  max-width: 100%;
+  display: none;
+}
+
+.origine-profil img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.bio-text {
+  color: white;
+  margin-top: 20px;
+  font-size: 1.2em;
+  line-height: 1.9em;
+  text-align: justify;
+  padding: 0 40px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .reseaux-icons {
   display: flex;
   justify-content: center;
@@ -130,14 +189,20 @@ nav a:hover {
   margin-top: 10px;
 }
 
-.label {
-  color: gold;
-  font-weight: bold;
+.icon {
+  margin-left: 10px;
+  margin-right: 8px;
+  font-size: 1.2em;
 }
 
 #contact p {
   margin: 10px 0;
   font-size: 1.1em;
+}
+
+.label {
+  color: gold;
+  font-weight: bold;
 }
 
 #contact a {
@@ -235,6 +300,7 @@ nav a:hover {
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
     padding: 0 10px;
     scrollbar-width: none;
@@ -256,6 +322,27 @@ nav a:hover {
   .origine-phrase {
     font-size: 1em;
     margin: 20px auto;
+  }
+
+  .boutons-bio {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .origines-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .origine-profil img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .bio-text {
+    font-size: 1em;
+    padding: 0 20px;
   }
 
   .reseaux-icons {
