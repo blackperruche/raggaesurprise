@@ -51,7 +51,7 @@ nav a:hover {
   max-width: 1000px;
   margin: 80px auto 0 auto;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   position: relative;
   z-index: 1;
@@ -65,14 +65,14 @@ nav a:hover {
   z-index: 1;
 }
 
-.highlight {
-  color: gold;
-  font-weight: 600;
-  font-size: 1.5em;
+.section#accueil {
+  display: block;
 }
 
-.highlight.small {
-  font-size: 1.2em;
+.highlight {
+  color: gold;
+  font-weight: bold;
+  font-size: 1.6em;
 }
 
 .origine-phrase {
@@ -80,65 +80,6 @@ nav a:hover {
   line-height: 1.8em;
   margin: 40px auto 30px auto;
   max-width: 800px;
-}
-
-.boutons-bio {
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.boutons-bio button {
-  padding: 10px 20px;
-  background-color: gold;
-  color: black;
-  font-weight: bold;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.boutons-bio button:hover {
-  background-color: #e6c200;
-  transform: scale(1.05);
-}
-
-.origines-row {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.origine-profil {
-  text-align: center;
-  max-width: 100%;
-  display: none;
-}
-
-.origine-profil img {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.bio-text {
-  color: white;
-  margin-top: 20px;
-  font-size: 1.2em;
-  line-height: 1.9em;
-  text-align: justify;
-  padding: 0 40px;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .reseaux-icons {
@@ -151,24 +92,23 @@ nav a:hover {
 
 .reseau-icon {
   opacity: 0;
-  transform: translateX(-30px);
-  animation: apparition 0.6s ease-out forwards;
+  transform: translateY(30px);
+  animation: slideIn 0.6s ease-out forwards;
 }
 
 .reseau-icon:nth-child(1) { animation-delay: 0.2s; }
 .reseau-icon:nth-child(2) { animation-delay: 0.4s; }
-.reseau-icon:nth-child(3) { animation-delay: 0.6s; }
 
-@keyframes apparition {
+@keyframes slideIn {
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
 .reseau-icon img {
-  width: 55px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
   transition: transform 0.3s, filter 0.3s;
   filter: brightness(1.1);
 }
@@ -178,26 +118,15 @@ nav a:hover {
   filter: brightness(1.5);
 }
 
-#reseaux .icon {
-  color: #FFD700;
-  font-size: 1.6em;
+.icon {
+  margin-left: 10px;
+  font-size: 1.4em;
 }
 
 .concert-infos {
   color: white;
   font-size: 1.1em;
   margin-top: 10px;
-}
-
-.icon {
-  margin-left: 10px;
-  margin-right: 8px;
-  font-size: 1.2em;
-}
-
-#contact p {
-  margin: 10px 0;
-  font-size: 1.1em;
 }
 
 .label {
@@ -253,37 +182,8 @@ nav a:hover {
 .logo {
   width: 240px;
   height: auto;
-  cursor: pointer;
-  transition: transform 0.3s;
-  position: relative;
-  z-index: 5;
   border-radius: 20px;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
-.glow {
-  filter: drop-shadow(0 0 15px gold);
-}
-
-#overlay-play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 64px;
-  color: gold;
-  cursor: pointer;
-  transition: opacity 0.3s;
-  z-index: 10;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
+  box-shadow: 0 0 15px gold;
 }
 
 /* ----------- VERSION MOBILE ------------ */
@@ -301,7 +201,6 @@ nav a:hover {
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
     padding: 0 10px;
     scrollbar-width: none;
@@ -320,47 +219,13 @@ nav a:hover {
     font-size: 1.3em;
   }
 
-  .origine-phrase {
-    font-size: 1em;
-    margin: 20px auto;
-  }
-
-  .boutons-bio {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .origines-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .origine-profil img {
-    width: 140px;
-    height: 140px;
-  }
-
-  .bio-text {
-    font-size: 1em;
-    padding: 0 20px;
-  }
-
-  .reseaux-icons {
-    gap: 15px;
-  }
-
   .reseau-icon img {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
   }
 
   .logo {
-    width: 160px;
-  }
-
-  #overlay-play-button {
-    font-size: 48px;
+    width: 180px;
   }
 
   .contact-form input,
